@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Face2Profile Benchmarking Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* subtle floating geometric shapes */
+    .shape {
+      position: absolute;
+      opacity: 0.05;
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .shape1 {
+      width: 120px;
+      height: 120px;
+      background: #4f46e5;
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    .shape2 {
+      width: 180px;
+      height: 180px;
+      background: #6366f1;
+      top: 70%;
+      right: 15%;
+      animation-delay: 4s;
+    }
+    .shape3 {
+      width: 100px;
+      height: 100px;
+      background: #818cf8;
+      top: 50%;
+      left: 80%;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-20px) translateX(10px); }
+    }
+  </style>
+</head>
+<body class="relative bg-gradient-to-br from-indigo-50 via-white to-indigo-100 min-h-screen flex flex-col">
+
+  <!-- Decorative floating shapes -->
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
+
+  <header class="bg-indigo-900 text-white shadow-md py-6 px-8 flex justify-between items-center relative z-10">
+    <h1 class="text-3xl font-extrabold">🏁 Face2Profile Benchmarking Platform</h1>
+    <div class="space-x-4">
+      <a href="register.html" 
+         class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition duration-300">
+        Create Account
+      </a>
+      <a href="login.html" 
+         class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition duration-300">
+        Login
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-6 py-20 flex flex-col items-center relative z-10">
+    <p class="max-w-3xl text-center text-xl mb-12 text-indigo-700 font-medium leading-relaxed">
+      Welcome to the official benchmarking platform for the <strong>Face2Profile</strong> dataset — a dedicated space to evaluate and compare algorithmic performance on this cutting-edge facial profiling dataset.
+    </p>
+
+<a href="leaderboard.html"
+   class="flex items-center space-x-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-3xl px-12 py-6 rounded-3xl shadow-2xl transition duration-300">
+  
+
+
+  <span>🏆 View Leaderboard 🏆</span>
+</a>
+
+
+    <section class="mt-20 w-full max-w-3xl text-center text-indigo-800">
+      <h2 class="text-2xl font-semibold mb-4">About Face2Profile Dataset</h2>
+      <p class="mb-6 text-lg leading-relaxed">
+        The Face2Profile dataset is a comprehensive collection designed to benchmark facial profiling algorithms. Our platform provides a seamless way to upload your results, receive instant scoring, and compare with peers on a transparent leaderboard.
+      </p>
+      <p class="italic text-indigo-600">
+        Note: This platform is intended exclusively for benchmarking algorithms using the Face2Profile dataset.
+      </p>
+    </section>
+  </main>
+
+  <footer class="bg-indigo-900 text-indigo-200 py-6 text-center text-sm opacity-80 relative z-10">
+    © 2025 Face2Profile Benchmarking Platform. All rights reserved.
+  </footer>
+
+</body>
+</html>
