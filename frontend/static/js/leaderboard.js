@@ -95,3 +95,35 @@ nextBtn.addEventListener("click", () => {
     renderTable();
   }
 });
+
+function checkLoginStatus() {
+    const authButtons = document.getElementById("authButtons");
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      authButtons.innerHTML = `
+        <a href="dashboard.html" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition">
+          Dashboard
+        </a>
+        <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition">
+          Logout
+        </button>
+      `;
+    } else {
+      authButtons.innerHTML = `
+        <a href="register.html" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition">
+          Create Account
+        </a>
+        <a href="login.html" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition">
+          Login
+        </a>
+      `;
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
+  }
+
+  checkLoginStatus();
