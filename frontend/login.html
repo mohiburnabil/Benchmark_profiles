@@ -5,37 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .shape {
+      position: absolute;
+      opacity: 0.05;
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .shape1 {
+      width: 120px;
+      height: 120px;
+      background: #4f46e5;
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    .shape2 {
+      width: 180px;
+      height: 180px;
+      background: #6366f1;
+      top: 70%;
+      right: 15%;
+      animation-delay: 4s;
+    }
+    .shape3 {
+      width: 100px;
+      height: 100px;
+      background: #818cf8;
+      top: 50%;
+      left: 80%;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-20px) translateX(10px); }
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-white min-h-screen flex items-center justify-center">
-  <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md border border-blue-100">
-    <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">Login to Your Account</h2>
+<body class="relative bg-gradient-to-br from-indigo-50 via-white to-indigo-100 min-h-screen flex flex-col items-center justify-start">
 
-    <form id="loginForm" class="space-y-4">
-      <input type="text" name="username" placeholder="Username" required
-             class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+  <!-- Decorative floating shapes -->
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
 
-      <input type="password" name="password" placeholder="Password" required
-             class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+  <!-- Navbar -->
+  <header class="bg-indigo-900 text-white shadow-md py-6 px-8 w-full flex justify-between items-center relative z-10">
+    <h1 onclick="window.location.href='index.html'" class="text-3xl font-extrabold cursor-pointer">
+    🏁 Face2Profile
+  </h1>
+  </header>
 
-      <button type="submit"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
-        🔐 Login
-      </button>
-    </form>
+  <!-- Login form -->
+  <main class="z-10 mt-20 w-full flex justify-center px-4">
+    <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md border border-blue-100">
+      <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">Login to Your Account</h2>
 
-    <!-- Links side-by-side -->
-    <div class="mt-6 flex justify-between items-center">
-      <a href="register.html"
-         class="text-blue-600 hover:underline font-medium">
-        Create New Account
-      </a>
+      <form id="loginForm" class="space-y-4">
+        <input type="text" name="username" placeholder="Username" required
+               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <input type="password" name="password" placeholder="Password" required
+               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+          🔐 Login
+        </button>
+      </form>
 
-      <a href="index.html"
-         class="text-blue-600 hover:underline font-medium">
-        ⬅ Back to Home
-      </a>
+      <!-- Links -->
+      <div class="mt-6 flex justify-between items-center">
+        <a href="register.html" class="text-blue-600 hover:underline font-medium">
+          Create New Account
+        </a>
+        <a href="index.html" class="text-blue-600 hover:underline font-medium">
+          ⬅ Back to Home
+        </a>
+      </div>
     </div>
-  </div>
+  </main>
 
   <script src="static/js/login.js"></script>
 </body>

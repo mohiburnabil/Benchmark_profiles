@@ -15,6 +15,8 @@ from backend.database import SessionLocal, engine
 from datetime import datetime, timedelta
 from typing import List
 
+
+
 # Create DB tables
 models.Base.metadata.create_all(bind=engine)
 
@@ -96,6 +98,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
 @app.post("/upload")
 def upload_result(file: UploadFile = File(...), db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    
     with open(f"temp_{file.filename}", "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     try:
