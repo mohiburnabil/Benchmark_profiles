@@ -68,48 +68,25 @@
               📂 Upload Your Dataset (CSV)
             </h2>
 
-      
-<div class="mb-6">
-  <input
-    type="file"
-    id="csvFile"
-    accept=".csv"
-    class="block w-full text-sm text-gray-700 border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200"
-  />
-</div>
+            <input
+              type="file"
+              id="csvFile"
+              accept=".csv"
+              class="block w-full mb-6 text-sm text-gray-700 border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200"
+            />
 
-<div class="flex items-center gap-2">
-  <button
-    id="uploadButton"
-    onclick="uploadCSV()"
-    class="inline-flex items-center px-6 py-2 bg-blue-700 text-white text-sm font-semibold rounded hover:bg-blue-800 transition focus:outline-none disabled:opacity-50"
-  >
-    Upload
-    <svg
-      id="uploadSpinner"
-      class="hidden ml-2 h-5 w-5 animate-spin text-white"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        class="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        stroke-width="4"
-      ></circle>
-      <path
-        class="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"
-      ></path>
-    </svg>
-  </button>
-</div>
+            <button
+              onclick="uploadCSV()"
+              class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition font-semibold"
+            >
+              Upload
+            </button>
 
-
+            <div
+              id="uploadFeedback"
+              class="mt-6 text-center text-lg font-medium text-green-600"
+            ></div>
+          </div>
 
           <p class="mt-10 text-center text-sm text-gray-500">
             For reference on the required file format, please
@@ -123,5 +100,53 @@
         </div>
       </main>
     </div>
+
+    <script>
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return (
+          date.toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          }) +
+          " at " +
+          date.toLocaleTimeString(undefined, {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        );
+      }
+
+      async function loadResults() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        const res = await fetch("http://localhost:8000/user/results", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (res.status === 401) {
+          alert("Session expired or unauthorized. Please log in again.");
+          logout();
+          return;
+        }
+
+        const results = await res.json();
+        const list = document.getElementById("resultsList");
+        list.innerHTML = "";
+        results.forEach((r) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td class="px-4 py-2 font-medium text-gray-900">${r.score}</td>
+          <td class="px-4 py-2 text-gray-700">${formatDate(r.uploaded_at)}</td>
+        `;
+          list.appendChild(row);
+        });
+      }
+    </script>
   </body>
 </html>
